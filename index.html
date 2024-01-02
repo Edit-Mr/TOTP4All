@@ -1,0 +1,69 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Alphanumeric Encryption and Decryption</title>
+    </head>
+    <body>
+        <h1>Alphanumeric String Encryption and Decryption</h1>
+        <label for="originalString">Original String:</label>
+        <input type="text" id="originalString" />
+        <label for="password">Password:</label>
+        <input type="password" id="password" />
+        <button onclick="encryptAndDisplay()">Encrypt</button>
+        <button onclick="decryptAndDisplay()">Decrypt</button>
+        <p>Encrypted String: <span id="encryptedString"></span></p>
+        <p>Decrypted String: <span id="decryptedString"></span></p>
+        <script>
+            const all =
+                "abcdefghijklmnopqrstuvwxyz0123456789";
+            const shifter = (letter, pass, direction) => {
+                var add =
+                    (all.indexOf(letter) + pass.charCodeAt(0) * direction) % all.length;
+                while (add < 0) add += all.length;
+                return all[add];
+            };
+            function encryptAndDisplay() {
+                var originalString =
+                    document.getElementById("originalString").value;
+                const password = document.getElementById("password").value;
+                const passwordLength = password.length;
+                const encryptTimes =
+                    parseInt(passwordLength / originalString.length) + 1;
+                for (var j = 0; j < encryptTimes; j++) {
+                    var encryptedString = "";
+                    for (var i = 0; i < originalString.length; i++) {
+                        encryptedString += shifter(
+                            originalString[i],
+                            password[i % passwordLength],
+                            1
+                        );
+                    }
+                    originalString = encryptedString;
+                }
+                document.getElementById("encryptedString").innerText =
+                    encryptedString;
+            }
+
+            function decryptAndDisplay() {
+                const encryptedString =
+                    document.getElementById("originalString").value;
+                const password = document.getElementById("password").value;
+                var decryptedString = "";
+                const passwordLength = password.length;
+                for (var i = 0; i < encryptedString.length; i++) {
+                    decryptedString += shifter(
+                        encryptedString[i],
+                        password[i % passwordLength],
+                        -1
+                    );
+                }
+                document.getElementById("decryptedString").innerText =
+                    decryptedString;
+            }
+        </script>
+    </body>
+</html>
