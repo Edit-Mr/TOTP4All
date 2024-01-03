@@ -1,0 +1,91 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="./totp.js"></script>
+    </head>
+    <body>
+        <div>
+            <label>Master key</label
+            ><input
+                id="input1"
+                type="text"
+                value="2JLXFRTKDX7EVJ2ZRETEW655JA"
+            />
+        </div>
+        <div>
+            <button id="button1">Generate one-time code</button>
+        </div>
+        <div>
+            <label>Computed code</label>
+            <div class="label1"></div>
+        </div>
+        <script>
+            var _interval;
+            window.addEventListener("load", function () {
+                var button1 = document.getElementById("button1");
+                button1.addEventListener("click", async function () {
+                    var input1 = document.getElementById("input1");
+                    if (input1.value) {
+                        if (_interval) {
+                            clearInterval(_interval);
+                        }
+                        const _loop = async function () {
+                            const key = input1.value;
+                            const totp = new TOTP(key);
+
+                            const code = await totp.gen();
+                            const label1 = document.getElementById("label1");
+                            label1.innerHTML = `code: ${code}`;
+                        };
+
+                        await _loop();
+                        _interval = setInterval(_loop, 3000);
+                    }
+                });
+            });
+        </script>
+        <h1>Alphanumeric String Encryption and Decryption</h1>
+        <label for="originalString">Original String:</label>
+        <input type="text" id="originalString" />
+        <label for="password">Password:</label>
+        <input type="password" id="password" />
+        <button onclick="encryptAndDisplay(1)">Encrypt</button>
+        <button onclick="encryptAndDisplay(-1)">Decrypt</button>
+        <p>Encrypted String: <span id="encryptedString"></span></p>
+        <script>
+            const all = "abcdefghijklmnopqrstuvwxyz0123456789";
+            const shifter = (letter, pass, direction) => {
+                var add =
+                    (all.indexOf(letter) + pass.charCodeAt(0) * direction) %
+                    all.length;
+                while (add < 0) add += all.length;
+                return all[add];
+            };
+            function encryptAndDisplay(direcction) {
+                var originalString =
+                    document.getElementById("originalString").value;
+                const password = document.getElementById("password").value;
+                const passwordLength = password.length;
+                const encryptTimes =
+                    parseInt(passwordLength / originalString.length) + 1;
+                for (var j = 0; j < encryptTimes; j++) {
+                    var encryptedString = "";
+                    for (var i = 0; i < originalString.length; i++)
+                        encryptedString += shifter(
+                            originalString[i],
+                            password[i % passwordLength],
+                            direcction
+                        );
+                    originalString = encryptedString;
+                }
+                document.getElementById("encryptedString").innerText =
+                    encryptedString;
+            }
+        </script>
+    </body>
+</html>

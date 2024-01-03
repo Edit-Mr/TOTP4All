@@ -1,0 +1,361 @@
+/** @format */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,700;1,900&display=swap");
+:root {
+    --black: #141414;
+    --white: white;
+    --primary: #2cbff5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: "Noto Sans", sans-serif;
+    /* 300 400 700 900 */
+}
+.nav-vertical {
+    z-index: 2;
+    width: 80px;
+    height: 100vh;
+    background-color: var(--black);
+    padding-block: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-right: var(--white) 1px solid;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transition: width 0.3s ease-in-out;
+    padding-left: 24px;
+}
+.nav-vertical > a,
+.nav-vertical .material-symbols-outlined {
+    color: var(--white);
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+.nav-vertical a {
+    text-decoration: none;
+}
+.nav-vertical a:hover,
+.nav-vertical a:hover .material-symbols-outlined {
+    color: var(--primary);
+}
+.nav-vertical a:hover .github {
+    filter: brightness(0) invert(67%) sepia(23%) saturate(2758%)
+        hue-rotate(163deg) brightness(96%) contrast(99%);
+}
+.nav-vertical a:hover .icon-caption {
+    transform: translateX(10px);
+}
+.github img {
+    width: 30px;
+    height: 30px;
+}
+.github {
+    transition: filter 0.3s ease-in-out;
+}
+.space {
+    flex-grow: 1;
+}
+
+.nav-vertical:hover {
+    width: 300px;
+}
+.nav-vertical:hover .icon-caption {
+    width: 220px;
+}
+.icon-caption {
+    display: inline-block;
+    width: 0px;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+    margin-left: 10px;
+    font-size: 20px;
+}
+main {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+}
+
+header {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-bottom: 100px;
+    height: 100dvh;
+    position: relative;
+}
+header > div:first-child {
+    width: 80%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+h1 {
+    font-size: 100px;
+}
+header a {
+    text-decoration: none;
+    color: var(--white);
+    font-size: 20px;
+    margin-top: 20px;
+    display: inline-block;
+    border: var(--white) 1px solid;
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+header a:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.highlight {
+    --x: 75vw;
+    --y: 50vh;
+    width: 100%;
+    word-wrap: break-word;
+    -webkit-mask-image: radial-gradient(
+        circle at var(--x) var(--y),
+        #fff,
+        #ffffff44 15em
+    );
+    mask-image: radial-gradient(
+        circle at var(--x) var(--y),
+        #fff,
+        #ffffff44 15em
+    );
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+}
+section {
+    height: 100dvh;
+    background: #000;
+}
+section.h50 {
+    height: 50vh;
+}
+.fixedSection {
+    background: var(--black);
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+h2 {
+    text-align: center;
+    font-size: 50px;
+}
+h3{
+    text-align: center;
+    font-size: 30px;
+}
+h4{
+    text-align: center;
+    font-size: 17px;
+}
+.login {
+    max-width: 400px;
+    width: 100%;
+    border: var(--white) 1px solid;
+    height: 300px;
+    display: flex;
+    overflow: hidden;
+}
+.loginPage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+.loginPage > div {
+    width: 80%;
+    height: 50px;
+    border: var(--white) 1px solid;
+    line-height: 50px;
+    padding-inline: 20px;
+}
+.loginPage > .login-button {
+    width: fit-content;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+.loginPage > .login-button.login-button-active {
+    background-color: var(--white);
+    color: var(--black);
+}
+.a {
+    position: absolute;
+    visibility: hidden;
+}
+#fixedSection {
+    position: fixed;
+    display: none;
+    top: 0;
+    right: 0;
+    width: calc(100% - 80px);
+    height: 100vh;
+}
+#fixedSection h2 {
+    position: relative;
+    flex-grow: 1;
+}
+
+#fixedSection h2 > span {
+    transition: opacity 0.3s ease-in-out;
+}
+#fixedSection h2 > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page2fa#fixedSection h2 > div {
+    opacity: 1;
+}
+
+.page2fa#fixedSection h2 > span {
+    opacity: 0;
+}
+
+.authPage {
+    transition: all 0.3s ease-in-out;
+    background: var(--black);
+}
+.page2fa .authPage {
+    transform: translateX(-100%);
+}
+
+.hand {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 70vh;
+    aspect-ratio: 191.6/242.08;
+    background: url(/src/hand.svg) no-repeat;
+    background-size: contain;
+    transform-origin: right bottom;
+    transform: rotate(-90deg) translate(0%, 100%);
+    /* display: none; */
+    transition: transform 0.3s ease-in-out;
+}
+.takephone + .hand {
+    transform: rotate(0deg);
+    display: block;
+}
+
+.hand::after {
+    content: "";
+    position: absolute;
+    left: 2.4%;
+    top: 15%;
+    width: 18.7%;
+    background: url(/src/finger.svg) no-repeat;
+    background-size: contain;
+    aspect-ratio: 32.05/78.55;
+    animation: hand 1s ease-in-out infinite;
+    z-index: 3;
+}
+.phone {
+    width: 54%;
+    aspect-ratio: 1/2;
+    border: var(--white) 5px solid;
+    transform: translate(25%, -10%);
+    background: #000;
+}
+#authCalc {
+    background: #000;
+}
+
+#authCalc > div {
+    width: calc(100% - 60vh);
+    padding: 30px;
+}
+#authCalc >div>h2:first-child {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.math {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 140px;
+}
+.math h3{
+    font-size: 20px;
+}
+.math div,
+.math .material-symbols-outlined {
+    text-align: center;
+}
+.totp-box {
+    position: relative;
+}
+.totp-box > div {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s ease-in-out;
+}
+.math-active .totp-box > div {
+    opacity: 1;
+    transform: scale(1);
+}
+.key,
+.time {
+    transition: all 0.3s ease-in-out;
+}
+.math-active .key {
+    transform: translateX(100%) scale(0.5);
+    opacity: 0;
+}
+.math-active .time {
+    transform: translateX(-100%) scale(0.5);
+    opacity: 0;
+}
+
+.totp-box::after {
+    content: "+";
+    font-size: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease-in-out;
+}
+.math-active > .totp-box::after {
+    opacity: 0;
+}
+.try{
+    margin-block: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+}
+.fraction>div:first-child{
+border-bottom: var(--white) 3px solid;
+}

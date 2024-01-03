@@ -5,65 +5,265 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Alphanumeric Encryption and Decryption</title>
+        <title>TOTP4All - A open soure TOTP generator</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <h1>Alphanumeric String Encryption and Decryption</h1>
-        <label for="originalString">Original String:</label>
-        <input type="text" id="originalString" />
-        <label for="password">Password:</label>
-        <input type="password" id="password" />
-        <button onclick="encryptAndDisplay()">Encrypt</button>
-        <button onclick="decryptAndDisplay()">Decrypt</button>
-        <p>Encrypted String: <span id="encryptedString"></span></p>
-        <p>Decrypted String: <span id="decryptedString"></span></p>
+        <div class="nav-vertical">
+            <a href="" target="_blank"
+                ><span class="material-symbols-outlined">home</span
+                ><span class="icon-caption">Home</span></a
+            >
+            <a href="" target="_blank"
+                ><span class="material-symbols-outlined">play_circle</span
+                ><span class="icon-caption">TOTP4All</span></a
+            >
+            <a href="" target="_blank"
+                ><span class="material-symbols-outlined">question_mark</span
+                ><span class="icon-caption">What is TOTP?</span></a
+            >
+            <a href="" target="_blank"
+                ><span class="material-symbols-outlined">description</span
+                ><span class="icon-caption">How does it Work?</span></a
+            >
+            <div class="space"></div>
+            <a href="" target="_blank"
+                ><div class="github">
+                    <img src="/src/github-mark-white.svg" alt="GitHUb" />
+                </div>
+                <span class="icon-caption">GitHub Repo</span></a
+            >
+        </div>
+        <main>
+            <header>
+                <div>
+                    <h1>TOTP4All</h1>
+                    <p>A open source TOTP keeper and generator.</p>
+                    <a href="totp">Get Started</a>
+                </div>
+                <div class="highlight"></div>
+            </header>
+            <section class="fixedSection" id="tryLogin">
+                <h2>You were trying to login...</h2>
+                <div class="login">
+                    <div class="loginPage">
+                        <h3>Login</h3>
+                        <div></div>
+                        <div></div>
+                        <div class="login-button">login</div>
+                    </div>
+                </div>
+            </section>
+            <section class="h50"></section>
+            <section class="fixedSection">
+                <h2>So you open your authenticator app...</h2>
+                <div class="login">
+                    <div class="loginPage authPage">
+                        <h3>2FA</h3>
+                        <div></div>
+                    </div>
+                </div>
+            </section>
+            <div id="authCalc">
+                <div>
+                    <h2>It generates a verification code every 30 seconds.</h2>
+                    <div class="math">
+                        <div class="key">
+                            <span class="material-symbols-outlined">key</span>
+                            <h3>Account Key</h3>
+                        </div>
+                        <div class="totp-box">
+                            <div>
+                                <span class="material-symbols-outlined">
+                                    pin
+                                </span>
+                                <h3>TOTP Code</h3>
+                            </div>
+                        </div>
+                        <div class="time">
+                            <span class="material-symbols-outlined">
+                                schedule
+                            </span>
+                            <h3>Current Time</h3>
+                        </div>
+                    </div>
+                    <h2>If a hacker wants to crack</h2>
+                    <h3>your verification code, he have to try</h3>
+                    <div class="try">
+                        <div class="fraction">
+                            <div>1000000</div>
+                            <div>60</div>
+                        </div>
+                        <h3>=</h3>
+                        <h3>16667 times per sec.</h3>
+                    </div>
+                    <h4>
+                        Which I don't think any app allows you to do so...
+                    </h4>
+                </div>
+            </div>
+            <section></section>
+        </main>
+        <section class="fixedSection" id="fixedSection">
+            <h2>
+                <span>You were trying to login...</span>
+                <div>To keep your account safe, you turned on 2FA</div>
+            </h2>
+            <div class="login">
+                <div class="loginPage">
+                    <h3>Login</h3>
+                    <div class="login-account"></div>
+                    <div class="login-password"></div>
+                    <div class="login-button login-button-user">login</div>
+                </div>
+                <div class="loginPage authPage">
+                    <h3>2FA</h3>
+                    <div></div>
+                </div>
+            </div>
+        </section>
+        <div class="hand">
+            <div class="phone"></div>
+        </div>
+        <span class="a">a</span>
         <script>
-            const all =
-                "abcdefghijklmnopqrstuvwxyz0123456789";
-            const shifter = (letter, pass, direction) => {
-                var add =
-                    (all.indexOf(letter) + pass.charCodeAt(0) * direction) % all.length;
-                while (add < 0) add += all.length;
-                return all[add];
-            };
-            function encryptAndDisplay() {
-                var originalString =
-                    document.getElementById("originalString").value;
-                const password = document.getElementById("password").value;
-                const passwordLength = password.length;
-                const encryptTimes =
-                    parseInt(passwordLength / originalString.length) + 1;
-                for (var j = 0; j < encryptTimes; j++) {
-                    var encryptedString = "";
-                    for (var i = 0; i < originalString.length; i++) {
-                        encryptedString += shifter(
-                            originalString[i],
-                            password[i % passwordLength],
-                            1
-                        );
-                    }
-                    originalString = encryptedString;
-                }
-                document.getElementById("encryptedString").innerText =
-                    encryptedString;
-            }
+            const title = document.querySelector("h1+p");
 
-            function decryptAndDisplay() {
-                const encryptedString =
-                    document.getElementById("originalString").value;
-                const password = document.getElementById("password").value;
-                var decryptedString = "";
-                const passwordLength = password.length;
-                for (var i = 0; i < encryptedString.length; i++) {
-                    decryptedString += shifter(
-                        encryptedString[i],
-                        password[i % passwordLength],
-                        -1
-                    );
+            const titleText = "A open source TOTP keeper and generator.";
+            const typeAnimation = () => {
+                for (let j = 0; j <= titleText.length; j++) {
+                    window.setTimeout(function () {
+                        for (let k = 0; k <= 1; k++) {
+                            var correct = randomText(j);
+                            correct += titleText.slice(j, titleText.length);
+                            title.innerText = correct;
+                        }
+                    }, 50 * j);
                 }
-                document.getElementById("decryptedString").innerText =
-                    decryptedString;
-            }
+                for (let j = 0; j <= titleText.length; j++) {
+                    window.setTimeout(function () {
+                        for (let k = 0; k <= 1; k++) {
+                            var correct = titleText.slice(0, j);
+                            correct += randomText(titleText.length - j);
+                            title.innerText = correct;
+                        }
+                    }, 50 * j + 50 * titleText.length);
+                }
+            };
+            setInterval(typeAnimation, 100 * titleText.length + 5000);
+            typeAnimation();
+            window.addEventListener("resize", function () {
+                typeAnimation();
+            });
+            const box =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            const randomText = amount => {
+                var a = "";
+                for (var i = 0; i < amount; i++)
+                    a += box[Math.floor(Math.random() * box.length)];
+                return a;
+            };
+            const bg = document.querySelector(".highlight");
+            const bluh = e => {
+                const singleText = document.querySelector(".a");
+                const total =
+                    (window.innerWidth * window.innerHeight) /
+                    singleText.offsetWidth /
+                    singleText.offsetHeight;
+                bg.innerText = randomText(total);
+                if (!e) return;
+                bg.style.setProperty("--x", `${e.clientX}px`);
+                bg.style.setProperty("--y", `${e.clientY}px`);
+            };
+            document.querySelector("header").onmousemove = e => bluh(e);
+            bluh();
+
+            const tryLogin = document.getElementById("tryLogin");
+            const fixedSection = document.getElementById("fixedSection");
+            window.addEventListener("scroll", function () {
+                if (tryLogin.getBoundingClientRect().top <= 0) {
+                    fixedSection.style.position = "fixed";
+                    fixedSection.style.display = "flex";
+                    if (
+                        tryLogin.getBoundingClientRect().top >=
+                        window.innerHeight / -1
+                    ) {
+                        fixedSection.classList.remove("page2fa");
+                        document
+                            .querySelector(".login-button-user")
+                            .classList.remove("login-button-active");
+                        if (
+                            tryLogin.getBoundingClientRect().top >=
+                            window.innerHeight / -2
+                        ) {
+                            document.querySelector(".login-account").innerText =
+                                "admin".slice(
+                                    0,
+                                    (-tryLogin.getBoundingClientRect().top /
+                                        window.innerHeight) *
+                                        10 +
+                                        1
+                                );
+                            document.querySelector(
+                                ".login-password"
+                            ).innerText = "";
+                        } else {
+                            document.querySelector(".login-account").innerText =
+                                "admin";
+                            document.querySelector(
+                                ".login-password"
+                            ).innerText = "**********".slice(
+                                0,
+                                (tryLogin.getBoundingClientRect().top /
+                                    window.innerHeight) *
+                                    -18 -
+                                    8
+                            );
+                        }
+                    } else if (
+                        tryLogin.getBoundingClientRect().top >=
+                        -window.innerHeight * 1.25
+                    ) {
+                        document.querySelector(".login-account").innerText =
+                            "admin";
+                        document.querySelector(".login-password").innerText =
+                            "**********";
+                        document
+                            .querySelector(".login-button-user")
+                            .classList.add("login-button-active");
+                    } else {
+                        document
+                            .querySelector(".login-button-user")
+                            .classList.remove("login-button-active");
+                        fixedSection.classList.add("page2fa");
+                        if (
+                            tryLogin.getBoundingClientRect().top <
+                            -window.innerHeight * 1.5
+                        ) {
+                            fixedSection.style.display = "none";
+                            var math = document.querySelector(".math");
+                            math.classList.toggle(
+                                "math-active",
+                                math.getBoundingClientRect().top <
+                                    (window.innerHeight / 3) * 2
+                            );
+                        }
+                    }
+                } else {
+                    fixedSection.style.position = "static";
+                    fixedSection.style.display = "none";
+                }
+                fixedSection.classList.toggle(
+                    "takephone",
+                    tryLogin.getBoundingClientRect().top <
+                        -window.innerHeight * 1.5
+                );
+            });
         </script>
     </body>
 </html>
