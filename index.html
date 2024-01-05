@@ -96,18 +96,21 @@
                     <div class="try">
                         <div class="fraction">
                             <div>1000000</div>
-                            <div>60</div>
+                            <div>30</div>
                         </div>
                         <h3>=</h3>
-                        <h3>16667 times per sec.</h3>
+                        <h3>33333 times per sec.</h3>
                     </div>
-                    <h4>
-                        Which I don't think any app allows you to do so...
-                    </h4>
+                    <h4>Which I don't think any app allows you to do so...</h4>
+                    <h2 class="verySafe">Seems like it's very safe right?</h2>
                 </div>
             </div>
-            <section></section>
+            <section class="h50"></section>
+            <section>aaa</section>
         </main>
+        <section id="however">
+            <h2>However</h2>
+        </section>
         <section class="fixedSection" id="fixedSection">
             <h2>
                 <span>You were trying to login...</span>
@@ -127,7 +130,10 @@
             </div>
         </section>
         <div class="hand">
-            <div class="phone"></div>
+            <div class="phone">
+                <div class="circle"></div>
+                <div class="circleCode"></div>
+            </div>
         </div>
         <span class="a">a</span>
         <script>
@@ -185,6 +191,9 @@
 
             const tryLogin = document.getElementById("tryLogin");
             const fixedSection = document.getElementById("fixedSection");
+            const verySafe = document.querySelector(".verySafe");
+            const however = document.getElementById("however");
+            const howeverText = document.querySelector("#however>h2");
             window.addEventListener("scroll", function () {
                 if (tryLogin.getBoundingClientRect().top <= 0) {
                     fixedSection.style.position = "fixed";
@@ -260,10 +269,64 @@
                 }
                 fixedSection.classList.toggle(
                     "takephone",
-                    tryLogin.getBoundingClientRect().top <
-                        -window.innerHeight * 1.5
+                    tryLogin.getBoundingClientRect().bottom <
+                        -window.innerHeight * 1.5 &&
+                        verySafe.getBoundingClientRect().bottom >=
+                            window.innerHeight / 2
                 );
+                if (
+                    verySafe.getBoundingClientRect().bottom <
+                    window.innerHeight / 2
+                ) {
+                    if (
+                        verySafe.getBoundingClientRect().bottom /
+                            window.innerHeight <
+                        -.5
+                    ) {
+                        however.classList.remove("verySafe-active");
+                        return;
+                    }
+                    however.classList.add("verySafe-active");
+                    // .5 .4 .3 .2 .1 0.1
+                    var texts = [
+                        "<span>If your phone</span>",
+                        "In Contrast",
+                        "Nevertheless",
+                        "However",
+                        "<span>But</span>",
+                    ];
+                    console.log(  Math.floor(
+                                (verySafe.getBoundingClientRect().bottom /
+                                    window.innerHeight) *
+                                    10
+                            ))
+                    howeverText.innerHTML =
+                        texts[
+                            Math.floor((
+                                (verySafe.getBoundingClientRect().bottom /
+                                    window.innerHeight) *
+                                    10+5)/2
+                            )
+                        ];
+                } else {
+                    however.classList.remove("verySafe-active");
+                }
             });
+
+            const circle = document.querySelector(".circle");
+            let angle = 360;
+            const circleCode = document.querySelector(".circleCode");
+            function animateCircle() {
+                circle.style.background = `conic-gradient(blue 0deg ${angle++}deg, var(--white) ${angle}deg 360deg)`;
+                if (angle >= 360) {
+                    angle = 0;
+                    circleCode.innerText = Math.floor(Math.random() * 1000000)
+                        .toString()
+                        .padStart(6, "0");
+                }
+                requestAnimationFrame(animateCircle);
+            }
+            animateCircle();
         </script>
     </body>
 </html>
