@@ -10,7 +10,7 @@
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="src/style.css" />
     </head>
     <body>
         <div class="nav-vertical">
@@ -33,7 +33,7 @@
             <div class="space"></div>
             <a href="" target="_blank"
                 ><div class="github">
-                    <img src="/src/github-mark-white.svg" alt="GitHUb" />
+                    <img src="src/github-mark-white.svg" alt="GitHUb" />
                 </div>
                 <span class="icon-caption">GitHub Repo</span></a
             >
@@ -41,15 +41,15 @@
         <main>
             <header>
                 <div>
-                    <h1>TOTP4All</h1>
+                    <h1 class="aos slideIn">TOTP4All</h1>
                     <p>A open source TOTP keeper and generator.</p>
                     <a href="totp">Get Started</a>
                 </div>
                 <div class="highlight"></div>
             </header>
             <section class="fixedSection" id="tryLogin">
-                <h2>You were trying to login...</h2>
-                <div class="login">
+                <h2 class="aos slideIn">You were trying to login...</h2>
+                <div class="login aso slideIn">
                     <div class="loginPage">
                         <h3>Login</h3>
                         <div></div>
@@ -70,7 +70,9 @@
             </section>
             <div id="authCalc">
                 <div>
-                    <h2>It generates a verification code every 30 seconds.</h2>
+                    <h2 class="aos slideIn">
+                        It generates a verification code every 30 seconds.
+                    </h2>
                     <div class="math">
                         <div class="key">
                             <span class="material-symbols-outlined">key</span>
@@ -101,12 +103,181 @@
                         <h3>=</h3>
                         <h3>33333 times per sec.</h3>
                     </div>
-                    <h4>Which I don't think any app allows you to do so...</h4>
-                    <h2 class="verySafe">Seems like it's very safe right?</h2>
+                    <h4 class="aos">
+                        Which I don't think any app allows you to do so...
+                    </h4>
+                    <h2 class="verySafe aos">
+                        Seems like it's very safe right?
+                    </h2>
                 </div>
             </div>
             <section class="h50"></section>
-            <section>aaa</section>
+            <section class="marquee">
+                <div>
+                    is out of battery. is broken. is wet. is exploded. is gone.
+                    is lagging. is locked.
+                </div>
+                <div>
+                    is left at home. is left in car. is left in office. is left
+                    in bathroom.
+                </div>
+                <div>
+                    your friend took it. your mom took it. your dad took it.
+                    your girlfriend took it. your boyfriend took it. your
+                    teacher took it. your child took it.
+                </div>
+                <div>
+                    storage is full. app has a bug. operating system is
+                    outdated. blocked by a firewall. clock is incorrect.
+                </div>
+                <div>
+                    is overheated. servers are down. license has expired.
+                    disabled by a device administrator.
+                </div>
+                <div>
+                    you deleted the app. you reset you phone. you forgot the
+                    password.
+                </div>
+            </section>
+            <div id="sucks">
+                <h3 class="aos slideIn">That's sucks, but dont worry.</h3>
+                <h2 id="introduce" class="aos slideIn">Introducings</h2>
+                <div class="intro-lines">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <h2 class="aos slideIn">TOTP4All</h2>
+                <p class="aos">
+                    TOTP for all in a online tool that can help you crypt and
+                    save your TOTP secrets with custom password. The crypt
+                    secret will look just like the original one, but you can
+                    only get the real verification code by decrypt it with your
+                    password.
+                </p>
+            </div>
+            <section id="">
+                <div class="crypting">
+                    <div>
+                        <div>
+                            <span class="material-symbols-outlined"> key </span>
+                            Original key
+                        </div>
+                        <h3>original</h3>
+                    </div>
+                    <span class="material-symbols-outlined"> add </span>
+                    <div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                password
+                            </span>
+                            Password
+                        </div>
+                        <h3>:hX1GgUg</h3>
+                    </div>
+                    <span class="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                    <div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                encrypted
+                            </span>
+                            Encrypted key
+                        </div>
+                        <h3>anything</h3>
+                    </div>
+                </div>
+                <div class="crypting">
+                    <div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                encrypted
+                            </span>
+                            Encrypted key
+                        </div>
+                        <h3>anything</h3>
+                    </div>
+
+                    <span class="material-symbols-outlined"> add </span>
+                    <div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                password
+                            </span>
+                            correct Password
+                        </div>
+                        <h3>:hX1GgUg</h3>
+                    </div>
+                    <span class="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                    <div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                key
+                            </span>
+                           Right code
+                        </div>
+                        <h3>123456</h3>
+                    </div>
+                </div>
+                <div class="crypting">
+                    <div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                encrypted
+                            </span>
+                            Encrypted key
+                        </div>
+                        <h3>anything</h3>
+                    </div>
+
+                    <span class="material-symbols-outlined"> add </span>
+                    <div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                password
+                            </span>
+                            Wrong Password
+                        </div>
+                        <h3>xE!wjOeA</h3>
+                    </div>
+                    <span class="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                    <div>
+                        <div>
+                            <span class="material-symbols-outlined">
+                                dangerous
+                            </span>
+                            Wrong code
+                        </div>
+                        <h3>078394</h3>
+                    </div>
+                </div>
+                <div class="intro-wrapper">
+                    <div>
+                        Every saved cryped secret will be public on this
+                        website, so you can access it anywhere. However, you can
+                        also run this site and save your secret locally, so no
+                        one can access it except you.
+                    </div>
+                    <div class="face">
+                        <span class="material-symbols-outlined">
+                            face
+                            </span>
+                        <span class="material-symbols-outlined">
+                            lock
+                            </span>
+                    </div>
+                </div>
+            </section>
         </main>
         <section id="however">
             <h2>However</h2>
@@ -270,7 +441,7 @@
                 fixedSection.classList.toggle(
                     "takephone",
                     tryLogin.getBoundingClientRect().bottom <
-                        -window.innerHeight * 1.5 &&
+                        -window.innerHeight * 1 &&
                         verySafe.getBoundingClientRect().bottom >=
                             window.innerHeight / 2
                 );
@@ -281,11 +452,17 @@
                     if (
                         verySafe.getBoundingClientRect().bottom /
                             window.innerHeight <
-                        -.5
+                        -0.5
                     ) {
+                        document
+                            .querySelector(".marquee")
+                            .classList.add("marquee-start");
                         however.classList.remove("verySafe-active");
                         return;
                     }
+                    document
+                        .querySelector(".marquee")
+                        .classList.remove("marquee-start");
                     however.classList.add("verySafe-active");
                     // .5 .4 .3 .2 .1 0.1
                     var texts = [
@@ -295,17 +472,21 @@
                         "However",
                         "<span>But</span>",
                     ];
-                    console.log(  Math.floor(
-                                (verySafe.getBoundingClientRect().bottom /
-                                    window.innerHeight) *
-                                    10
-                            ))
+                    console.log(
+                        Math.floor(
+                            (verySafe.getBoundingClientRect().bottom /
+                                window.innerHeight) *
+                                10
+                        )
+                    );
                     howeverText.innerHTML =
                         texts[
-                            Math.floor((
-                                (verySafe.getBoundingClientRect().bottom /
+                            Math.floor(
+                                ((verySafe.getBoundingClientRect().bottom /
                                     window.innerHeight) *
-                                    10+5)/2
+                                    10 +
+                                    5) /
+                                    2
                             )
                         ];
                 } else {
@@ -327,6 +508,23 @@
                 requestAnimationFrame(animateCircle);
             }
             animateCircle();
+            // animate on scroll
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return rect.bottom < 0 || rect.top > window.innerHeight;
+            }
+
+            function addClassToVisibleElements() {
+                var aosElements = document.querySelectorAll(".aos");
+                aosElements.forEach(function (aosElement) {
+                    if (!isElementInViewport(aosElement))
+                        aosElement.classList.add("ed");
+                    else aosElement.classList.remove("ed");
+                });
+            }
+
+            document.addEventListener("scroll", addClassToVisibleElements);
+            addClassToVisibleElements();
         </script>
     </body>
 </html>

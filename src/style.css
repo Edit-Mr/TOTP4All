@@ -16,6 +16,7 @@ body {
     color: var(--white);
     font-family: "Noto Sans", sans-serif;
     /* 300 400 700 900 */
+    overflow-x: hidden;
 }
 .nav-vertical {
     z-index: 2;
@@ -254,7 +255,7 @@ h4 {
     right: 0;
     height: 70vh;
     aspect-ratio: 191.6/242.08;
-    background: url(/src/hand.svg) no-repeat;
+    background: url(hand.svg) no-repeat;
     background-size: contain;
     transform-origin: right bottom;
     transform: rotate(-90deg) translate(0%, 100%);
@@ -272,7 +273,7 @@ h4 {
     left: 2.4%;
     top: 15%;
     width: 18.7%;
-    background: url(/src/finger.svg) no-repeat;
+    background: url(finger.svg) no-repeat;
     background-size: contain;
     aspect-ratio: 32.05/78.55;
     animation: hand 1s ease-in-out infinite;
@@ -291,7 +292,8 @@ h4 {
     font-size: 20px;
     gap: 15px;
 }
-#authCalc {
+#authCalc,
+#sucks {
     background: #000;
 }
 
@@ -405,4 +407,187 @@ h4 {
 #however h2 > span {
     font-weight: 400;
     font-style: normal;
+}
+.marquee {
+    overflow-x: hidden;
+    height: 120vh;
+    font-weight: 700;
+}
+.marquee div {
+    height: 1.1em;
+    width: fit-content;
+    white-space: nowrap;
+    color: #c3c3c3;
+    font-size: 15vh;
+}
+.marquee-start div {
+    animation: marquee 10s linear infinite;
+}
+@keyframes marquee {
+    0% {
+        transform: translateX(100vw);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+.intro-lines {
+    width: min(100%, 600px);
+    margin: 20px auto;
+}
+.intro-lines > div {
+    height: 2px;
+    width: 100%;
+    margin: 50px auto;
+    animation: breath 1.5s infinite alternate;
+}
+.intro-lines > div:nth-child(2) {
+    width: 74%;
+    animation-delay: 0.15s;
+}
+
+.intro-lines > div:nth-child(3) {
+    width: 52%;
+    animation-delay: 0.3s;
+}
+
+.intro-lines > div:nth-child(4) {
+    width: 37%;
+    animation-delay: 0.45s;
+}
+
+.intro-lines > div:nth-child(5) {
+    width: 24%;
+    animation-delay: 0.6s;
+}
+
+.intro-lines > div:nth-child(6) {
+    width: 19%;
+    animation-delay: 0.75s;
+}
+
+.intro-lines > div:nth-child(6) {
+    width: 11%;
+    animation-delay: 0.75s;
+}
+
+.intro-lines > div:nth-child(7) {
+    width: 5%;
+    animation-delay: 0.9s;
+}
+
+.intro-lines > div:nth-child(8) {
+    width: 1%;
+    animation-delay: 1.05s;
+}
+
+@keyframes breath {
+    0% {
+        background-color: #000;
+    }
+
+    100% {
+        background-color: #b0b0b0;
+    }
+}
+
+#sucks .intro-lines + h2 {
+    font-size: 100px;
+}
+
+#sucks p {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+#introduce {
+    height: unset;
+    padding-top: 100px;
+}
+#sucks p{
+    padding-bottom: 20px;
+}
+
+.intro-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    max-width: 800px;
+    padding-inline: 20px;
+    margin: auto;
+}
+
+.crypting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-block: 20px;
+}
+.crypting > div > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.crypting >div{
+    width: 10em;
+}
+.face{
+    flex-shrink: 0;
+}
+.face >.material-symbols-outlined{
+    font-size: 100px;
+}
+
+/* animate on scroll */
+
+.aos {
+    opacity: 0;
+    transition: all 1s;
+}
+
+.aos.ed {
+    opacity: 1;
+}
+
+.slideIn {
+    transform: translateY(30px);
+}
+.slideIn.ed {
+    transform: translateY(0em);
+}
+
+.slideInLeft {
+    transform: translateX(-100vw);
+}
+.slideInLeft.ed {
+    transform: translateX(0);
+}
+
+.zoom {
+    opacity: 1;
+}
+.zoom.ed {
+    animation: zoom 1.5s forwards linear;
+}
+@keyframes zoom {
+    0% {
+        scale: 1;
+    }
+    25% {
+        scale: 1.5;
+    }
+    50% {
+        scale: 1;
+    }
+    75% {
+        scale: 1.25;
+    }
+    100% {
+        scale: 1;
+    }
 }

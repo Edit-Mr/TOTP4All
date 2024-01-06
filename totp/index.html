@@ -72,7 +72,8 @@
                 const password = document.getElementById("password").value;
                 const passwordLength = password.length;
                 const encryptTimes =
-                    parseInt(passwordLength / originalString.length) + 1;
+                    Math.ceil(passwordLength / originalString.length);
+                    console.log(encryptTimes)
                 for (var j = 0; j < encryptTimes; j++) {
                     var encryptedString = "";
                     for (var i = 0; i < originalString.length; i++)
