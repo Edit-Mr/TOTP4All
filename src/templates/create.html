@@ -1,0 +1,257 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Create TOTP Secret</title>
+        <style>
+            :root {
+                --black: #141414;
+                --white: white;
+                --primary: #2cbff5;
+            }
+            @font-face {
+                font-family: "Fira Code";
+                src: url("/static/font/FiraCode-Regular.woff2") format("woff2");
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: "Fira Code";
+                src: url("/static/font/FiraCode-Bold.woff2") format("woff2");
+                font-weight: bold;
+                font-style: normal;
+            }
+
+            body {
+                font-family: "Fira Code", "Courier New", Courier, monospace;
+                /* Rest of your CSS styles */
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Courier New", Courier, monospace;
+                min-height: 100vh;
+                background-color: #000000;
+                color: #fff;
+            }
+            main {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 4rem 2rem;
+                min-height: calc(100vh - 7rem);
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+            .step {
+                margin-bottom: 1rem;
+                /* border: 1px solid #fff; */
+                padding: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            p {
+                margin-block: 1rem;
+            }
+
+            input,
+            .link {
+                width: 100%;
+                padding: 0.5rem;
+                font-size: 1rem;
+                background: #000;
+                color: #fff;
+                border: 1px solid #c4c4c4;
+                outline: transparent;
+            }
+
+            input[type="submit"] {
+                background: #000;
+                color: #fff;
+                border: 1px solid #c4c4c4;
+                cursor: pointer;
+                font-size: 1rem;
+                padding: 0.5rem;
+                width: 100%;
+            }
+
+            input[type="submit"]:hover {
+                background: #fff;
+                color: #000;
+            }
+            footer {
+                padding: 1.5rem 0;
+                text-align: center;
+                background: var(--black);
+                color: var(--white);
+                line-height: 2;
+            }
+
+            a {
+                color: var(--white);
+            }
+            .creating > main {
+                display: none;
+            }
+            #creating,
+            #success {
+                display: none;
+                text-align: center;
+            }
+            .creating > #creating {
+                display: block;
+            }
+            .success > main {
+                display: none;
+            }
+
+            .success > #success {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Create New TOTP</h1>
+            <div class="error"></div>
+            <div class="step">
+                <h2>Step1: Enter secrets</h2>
+                <p>
+                    You can eather copy a secret key or scan a QR code to get
+                    the secret.
+                </p>
+                <input type="text" id="secret" name="secret" required />
+            </div>
+            <div class="step">
+                <h2>Step2: Create Password (Optional)</h2>
+                <p>You can create a password to protect your TOTP secret.</p>
+                <p>
+                    Remember, your secret is encrypted in local, we do not store
+                    your password, so if you forget it, you will have to create
+                    a new TOTP secret.
+                </p>
+                <input type="password" id="password" name="password" />
+            </div>
+            <div class="step">
+                <h2>Step3: Custom Name (Optional)</h2>
+                <p>
+                    You can create a custom URL endpoint for your TOTP secret.
+                </p>
+                <input type="text" id="name" name="name" placeholder="" />
+            </div>
+            <input type="submit" value="Submit" />
+        </main>
+        <section id="creating">
+            <main>
+                <h1>Creating TOTP Secret</h1>
+                <p>Please wait...</p>
+            </main>
+        </section>
+        <section id="success">
+            <main>
+                <h1>Success</h1>
+                <p>
+                    Your TOTP secret has been created successfully. You can now
+                    use this url to get your TOTP code. Don't forget to enter
+                    your password if you have set one, and please keep this url
+                    safe, as you won't see this page again.
+                </p>
+                <div class="link"></div>
+                <p>
+                    <a href="/">Go back to home</a>
+                    |
+                    <a id="totpPage" href="/">View TOTP</a>
+                </p>
+            </main>
+        </section>
+        <footer>
+            <div>
+                Powered by
+                <a href="https://elvismao.com">Elvis Mao</a> from
+                <a href="https://scaict.org">SCAICT</a><br />
+                <a href="https:github.com/edit-mr/TOTP4All">View on GitHub</a>
+            </div>
+        </footer>
+        <script>
+            document
+                .querySelector('input[type="submit"]')
+                .addEventListener("click", async e => {
+                    e.preventDefault();
+                    document.body.classList = "creating";
+                    const all = "abcdefghijklmnopqrstuvwxyz0123456789";
+                    const shifter = (letter, pass, direction) => {
+                        var add =
+                            (all.indexOf(letter) +
+                                pass.charCodeAt(0) * direction) %
+                            all.length;
+                        while (add < 0) add += all.length;
+                        return all[add];
+                    };
+                    let secret = document.getElementById("secret").value;
+                    const password = document.getElementById("password").value;
+                    if (secret) {
+                        const passwordLength = password.length;
+                        const encryptTimes = Math.ceil(
+                            passwordLength / secret.length
+                        );
+                        for (var j = 0; j < encryptTimes; j++) {
+                            var encryptedString = "";
+                            for (var i = 0; i < secret.length; i++)
+                                encryptedString += shifter(
+                                    secret[i],
+                                    password[i % passwordLength],
+                                    1
+                                );
+                            secret = encryptedString;
+                        }
+                    }
+                    const name = document.getElementById("name").value;
+                    try {
+                        const response = await fetch("/create", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                secret,
+                                password,
+                                name,
+                            }),
+                        });
+                        const data = await response.json();
+                        if (data.status === "success") {
+                            //get current domain
+                            const url = new URL(window.location.href);
+                            const page = `${url.origin}/totp/${data.keyName}`;
+                            document.getElementById("totpPage").href = page;
+                            document.querySelector(".link").innerText = page;
+
+                            document.body.classList = "success";
+                        } else {
+                            document.body.classList = "";
+                            document.querySelector(".error").innerText =
+                                data.message;
+                        }
+                    } catch (e) {
+                        document.body.classList = "";
+                        document.querySelector(".error").innerText =
+                            data.message;
+                    }
+                });
+        </script>
+    </body>
+</html>

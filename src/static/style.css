@@ -104,7 +104,8 @@ header > div:first-child {
 h1 {
     font-size: 100px;
 }
-header a ,.tryNow a{
+header a,
+.tryNow a {
     text-decoration: none;
     color: var(--white);
     font-size: 20px;
@@ -115,7 +116,8 @@ header a ,.tryNow a{
     transition: all 0.3s ease-in-out;
 }
 
-header a:hover ,.tryNow a:hover{
+header a:hover,
+.tryNow a:hover {
     background-color: var(--white);
     color: var(--black);
 }
@@ -498,7 +500,8 @@ h4 {
     margin-bottom: 1.5rem;
 }
 
-#sucks p,#sucks h3 {
+#sucks p,
+#sucks h3 {
     max-width: 600px;
     margin: auto;
     text-align: center;
@@ -549,24 +552,23 @@ h4 {
     height: unset;
 }
 
-.tryNow{
+.tryNow {
     padding-block: 4rem 5rem;
 }
-.tryNow a{
+.tryNow a {
     display: block;
     width: fit-content;
     margin: 1rem auto;
-
 }
-footer{
-    padding: 2rem 0;
+footer {
+    padding: 1.5rem 0;
     text-align: center;
     background: var(--black);
     color: var(--white);
-
+    line-height: 2;
 }
 
-footer a{
+footer a {
     color: var(--white);
 }
 /* animate on scroll */

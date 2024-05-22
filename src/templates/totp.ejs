@@ -61,6 +61,35 @@
                 font-weight: bold;
                 margin-block: 0.5rem 1rem;
             }
+            footer {
+                color: #5b5b5b;
+            }
+
+            input[type="password"] {
+                font-family: "Fira Code", "Courier New", Courier, monospace;
+                border: 1px solid #fff;
+                background-color: transparent;
+                color: #fff;
+                height: 2rem;
+            }
+            input[type="password"]:focus {
+                outline: none;
+            }
+
+            button {
+                background-color: #000;
+                color: #fff;
+                border: 1px solid #fff;
+                padding: 0.5rem 1rem;
+                height: 2rem;
+                cursor: pointer;
+            }
+            form {
+                margin-block: .5rem 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
         </style>
     </head>
     <body>
@@ -73,6 +102,15 @@
             <div class="token"><%= token %></div>
             <div>Refresh in <span></span> seconds.</div>
         </main>
+        password (optional)
+        <form action="/totp/<%= keyName %>" method="post">
+            <input
+                type="password"
+                name="password"
+                placeholder="password (optional)"
+            />
+            <button type="submit">Submit</button>
+        </form>
         <footer>
             This code may be fake, who knows?<br />
             Powered by <a href="/">TOTP4All</a> by
