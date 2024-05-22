@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Edit-Mr/TOTP4All#readme",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "jsonfile": "^6.1.0",
     "node-json-db": "^2.3.0",

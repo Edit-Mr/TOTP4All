@@ -1,0 +1,93 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TOTP - TOTP4All</title>
+        <style>
+            @font-face {
+                font-family: "Fira Code";
+                src: url("/static/font/FiraCode-Regular.woff2") format("woff2");
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: "Fira Code";
+                src: url("/static/font/FiraCode-Bold.woff2") format("woff2");
+                font-weight: bold;
+                font-style: normal;
+            }
+
+            body {
+                font-family: "Fira Code", "Courier New", Courier, monospace;
+                /* Rest of your CSS styles */
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Courier New", Courier, monospace;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                background-color: #000000;
+                color: #fff;
+                padding: 2rem;
+                text-align: center;
+            }
+            main {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                flex-grow: 1;
+            }
+            a {
+                color: #fff;
+                margin-top: 20px;
+                font-size: 0.8rem;
+            }
+            h1 {
+                font-size: 1rem;
+            }
+            .token {
+                font-size: 4rem;
+                font-weight: bold;
+                margin-block: 0.5rem 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>
+                Your
+                <abbr title="Time-based One-Time Password">TOTP</abbr>
+                code is:
+            </h1>
+            <div class="token"><%= token %></div>
+            <div>Refresh in <span></span> seconds.</div>
+        </main>
+        <footer>
+            This code may be fake, who knows?<br />
+            Powered by <a href="/">TOTP4All</a> by
+            <a href="https://elvismao.com">Elvis Mao</a>
+        </footer>
+        <script>
+            const countdown = 30 - (new Date().getSeconds() % 30);
+            const span = document.querySelector("span");
+            span.textContent = countdown;
+            setInterval(() => {
+                span.textContent = 30 - (new Date().getSeconds() % 30);
+                if (span.textContent === "30") {
+                    window.location.reload();
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>
