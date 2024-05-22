@@ -1,0 +1,29 @@
+{
+  "name": "totp4all",
+  "version": "1.0.0",
+  "description": "TOTP for All",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Edit-Mr/TOTP4All.git"
+  },
+  "keywords": [
+    "TOTP",
+    "TOTP4All"
+  ],
+  "author": "Elvis Mao",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Edit-Mr/TOTP4All/issues"
+  },
+  "homepage": "https://github.com/Edit-Mr/TOTP4All#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "jsonfile": "^6.1.0",
+    "node-json-db": "^2.3.0",
+    "speakeasy": "^2.0.0"
+  }
+}

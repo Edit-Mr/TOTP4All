@@ -10,7 +10,7 @@
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="src/style.css" />
+        <link rel="stylesheet" href="/static/style.css" />
     </head>
     <body>
         <div class="nav-vertical">
@@ -33,7 +33,7 @@
             <div class="space"></div>
             <a href="" target="_blank"
                 ><div class="github">
-                    <img src="src/github-mark-white.svg" alt="GitHUb" />
+                    <img src="/static/github-mark-white.svg" alt="GitHUb" />
                 </div>
                 <span class="icon-caption">GitHub Repo</span></a
             >
@@ -140,7 +140,9 @@
                 </div>
             </section>
             <div id="sucks">
-                <h3 class="aos slideIn">That's sucks, but dont worry.</h3>
+                <h3 class="aos slideIn">
+                    Or sometime you just want to share a account with your team
+                </h3>
                 <h2 id="introduce" class="aos slideIn">Introducings</h2>
                 <div class="intro-lines">
                     <div></div>
@@ -158,10 +160,11 @@
                     save your TOTP secrets with custom password. The crypt
                     secret will look just like the original one, but you can
                     only get the real verification code by decrypt it with your
-                    password.
+                    password. No one will know what this secret is for, even us
+                    server.
                 </p>
             </div>
-            <section id="">
+            <section id="theory">
                 <div class="crypting">
                     <div>
                         <div>
@@ -219,10 +222,8 @@
                     </span>
                     <div>
                         <div>
-                            <span class="material-symbols-outlined">
-                                key
-                            </span>
-                           Right code
+                            <span class="material-symbols-outlined"> key </span>
+                            Right code
                         </div>
                         <h3>123456</h3>
                     </div>
@@ -263,19 +264,19 @@
                 </div>
                 <div class="intro-wrapper">
                     <div>
-                        Every saved cryped secret will be public on this
-                        website, so you can access it anywhere. However, you can
-                        also run this site and save your secret locally, so no
-                        one can access it except you.
+                        After you encrypt your key with your password, you can
+                        safely share it with your team. They can only get the
+                        real verification code by decrypt it with the correct
+                        password.
                     </div>
                     <div class="face">
-                        <span class="material-symbols-outlined">
-                            face
-                            </span>
-                        <span class="material-symbols-outlined">
-                            lock
-                            </span>
+                        <span class="material-symbols-outlined"> face </span>
+                        <span class="material-symbols-outlined"> lock </span>
                     </div>
+                </div>
+                <div class="intro-wrapper">
+                    <h2 class="aos slideIn ed">Try It Now</h2>
+                    <a href="/totp"></a>
                 </div>
             </section>
         </main>
