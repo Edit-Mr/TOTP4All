@@ -1,18 +1,129 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create TOTP Secret</title>
-</head>
-<body>
-    <h1>Create TOTP Secret</h1>
-    <form action="/create" method="post">
-        <label for="secret">TOTP Secret:</label>
-        <input type="text" id="secret" name="secret" required><br><br>
-        <label for="name">Name (optional):</label>
-        <input type="text" id="name" name="name"><br><br>
-        <input type="submit" value="Submit">
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Create TOTP Secret</title>
+        <style>
+            @font-face {
+                font-family: "Fira Code";
+                src: url("/static/font/FiraCode-Regular.woff2") format("woff2");
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: "Fira Code";
+                src: url("/static/font/FiraCode-Bold.woff2") format("woff2");
+                font-weight: bold;
+                font-style: normal;
+            }
+
+            body {
+                font-family: "Fira Code", "Courier New", Courier, monospace;
+                /* Rest of your CSS styles */
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Courier New", Courier, monospace;
+                min-height: 100vh;
+                background-color: #000000;
+                color: #fff;
+                padding: 4rem 2rem;
+            }
+            main {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+            .step {
+                margin-bottom: 1rem;
+                /* border: 1px solid #fff; */
+                padding: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            p {
+                margin-block: 1rem;
+            }
+
+            input {
+                width: 100%;
+                padding: 0.5rem;
+                font-size: 1rem;
+                background: #000;
+                color: #fff;
+                border: 1px solid #c4c4c4;
+                outline: transparent;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Create New TOTP</h1>
+            <div class="step">
+                <h2>Step1: Enter secrets</h2>
+                <p>
+                    You can eather copy a secret key or scan a QR code to get
+                    the secret.
+                </p>
+                <input type="text" id="secret" name="secret" required />
+            </div>
+            <div class="step">
+                <h2>Step2: Create Password (Optional)</h2>
+                <p>You can create a password to protect your TOTP secret.</p>
+                <p>
+                    Remember, we do not store your password, so if you forget
+                    it, you will have to create a new TOTP secret.
+                </p>
+                <input type="password" id="password" name="password" />
+            </div>
+            <div class="step">
+                <h2>Step3: Custom Name (Optional)</h2>
+                <p>
+                    You can create a custom URL endpoint for your TOTP secret.
+                </p>
+                <input type="text" id="name" name="name" placeholder="" />
+            </div>
+            <input type="submit" value="Submit" />
+        </main>
+        <script>
+            document
+                .querySelector('input[type="submit"]')
+                .addEventListener("click", async e => {
+                    e.preventDefault();
+                    const secret = document.getElementById("secret").value;
+                    const password = document.getElementById("password").value;
+                    const name = document.getElementById("name").value;
+                    const response = await fetch("/create", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            secret,
+                            password,
+                            name,
+                        }),
+                    });
+                    const data = await response.json();
+                    console.log(data);
+                });
+        </script>
+    </body>
 </html>

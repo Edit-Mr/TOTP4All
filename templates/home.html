@@ -14,19 +14,19 @@
     </head>
     <body>
         <div class="nav-vertical">
-            <a href="" target="_blank"
+            <a href=""
                 ><span class="material-symbols-outlined">home</span
                 ><span class="icon-caption">Home</span></a
             >
-            <a href="" target="_blank"
+            <a href="create"
                 ><span class="material-symbols-outlined">play_circle</span
                 ><span class="icon-caption">TOTP4All</span></a
             >
-            <a href="" target="_blank"
+            <a href="#tryLogin"
                 ><span class="material-symbols-outlined">question_mark</span
                 ><span class="icon-caption">What is TOTP?</span></a
             >
-            <a href="" target="_blank"
+            <a href="#introduce"
                 ><span class="material-symbols-outlined">description</span
                 ><span class="icon-caption">How does it Work?</span></a
             >
@@ -43,7 +43,7 @@
                 <div>
                     <h1 class="aos slideIn">TOTP4All</h1>
                     <p>A open source TOTP keeper and generator.</p>
-                    <a href="totp">Get Started</a>
+                    <a href="craete">Get Started</a>
                 </div>
                 <div class="highlight"></div>
             </header>
@@ -141,7 +141,8 @@
             </section>
             <div id="sucks">
                 <h3 class="aos slideIn">
-                    Or sometime you just want to share a account with your team
+                    Or sometime you just want to share an account with your team,
+                    but stuck in the 2FA. Don't worry,
                 </h3>
                 <h2 id="introduce" class="aos slideIn">Introducings</h2>
                 <div class="intro-lines">
@@ -275,10 +276,41 @@
                     </div>
                 </div>
                 <div class="intro-wrapper">
-                    <h2 class="aos slideIn ed">Try It Now</h2>
-                    <a href="/totp"></a>
+                    <div class="face">
+                        <span class="material-symbols-outlined">
+                            shield_question
+                        </span>
+                    </div>
+                    <div>
+                        Your can custom the URL for your secret, so you can
+                        easily share it with your team. However, no one will
+                        know does this ID exist, or does it have a password.
+                    </div>
+                </div>
+                <div class="intro-wrapper">
+                    <div>
+                        Even if this ID doesn't exist, or the password is wrong,
+                        we will return a fake code to the hacker. So they will
+                        never know if they are right or wrong.
+                    </div>
+                    <div class="face">
+                        <span class="material-symbols-outlined">
+                            deployed_code_alert
+                        </span>
+                    </div>
+                </div>
+                <div class="tryNow">
+                    <h2 class="aos slideIn ed">Try TOTP4All</h2>
+                    <a href="/create">Get Started</a>
                 </div>
             </section>
+            <footer>
+                <div>
+                    Powered by
+                    <a href="https://elvismao.com">Elvis Mao</a> from
+                    <a href="https://scaict.org">SCAICT</a>
+                </div>
+            </footer>
         </main>
         <section id="however">
             <h2>However</h2>

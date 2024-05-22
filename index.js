@@ -6,7 +6,6 @@ const path = require('path');
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 const db = new JsonDB(new Config(path.join(__dirname, '/token.json'), true, true, '/'));
 

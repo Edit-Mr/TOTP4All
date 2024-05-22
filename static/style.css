@@ -104,7 +104,7 @@ header > div:first-child {
 h1 {
     font-size: 100px;
 }
-header a {
+header a ,.tryNow a{
     text-decoration: none;
     color: var(--white);
     font-size: 20px;
@@ -115,7 +115,7 @@ header a {
     transition: all 0.3s ease-in-out;
 }
 
-header a:hover {
+header a:hover ,.tryNow a:hover{
     background-color: var(--white);
     color: var(--black);
 }
@@ -495,9 +495,10 @@ h4 {
 
 #sucks .intro-lines + h2 {
     font-size: 100px;
+    margin-bottom: 1.5rem;
 }
 
-#sucks p {
+#sucks p,#sucks h3 {
     max-width: 600px;
     margin: auto;
     text-align: center;
@@ -507,7 +508,7 @@ h4 {
     height: unset;
     padding-top: 100px;
 }
-#sucks p{
+#sucks p {
     padding-bottom: 20px;
 }
 
@@ -534,18 +535,39 @@ h4 {
     align-items: center;
     gap: 5px;
 }
-.crypting >div{
+.crypting > div {
     width: 10em;
 }
-.face{
+.face {
     flex-shrink: 0;
 }
-.face >.material-symbols-outlined{
+.face > .material-symbols-outlined {
     font-size: 100px;
 }
 
-#theory{
+#theory {
     height: unset;
+}
+
+.tryNow{
+    padding-block: 4rem 5rem;
+}
+.tryNow a{
+    display: block;
+    width: fit-content;
+    margin: 1rem auto;
+
+}
+footer{
+    padding: 2rem 0;
+    text-align: center;
+    background: var(--black);
+    color: var(--white);
+
+}
+
+footer a{
+    color: var(--white);
 }
 /* animate on scroll */
 

@@ -6,49 +6,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <script src="./totp.js"></script>
     </head>
     <body>
-        <div>
-            <label>Master key</label
-            ><input
-                id="input1"
-                type="text"
-                value="2JLXFRTKDX7EVJ2ZRETEW655JA"
-            />
-        </div>
-        <div>
-            <button id="button1">Generate one-time code</button>
-        </div>
         <div>
             <label>Computed code</label>
             <div class="label1"></div>
         </div>
-        <script>
-            var _interval;
-            window.addEventListener("load", function () {
-                var button1 = document.getElementById("button1");
-                button1.addEventListener("click", async function () {
-                    var input1 = document.getElementById("input1");
-                    if (input1.value) {
-                        if (_interval) {
-                            clearInterval(_interval);
-                        }
-                        const _loop = async function () {
-                            const key = input1.value;
-                            const totp = new TOTP(key);
-
-                            const code = await totp.gen();
-                            const label1 = document.getElementById("label1");
-                            label1.innerHTML = `code: ${code}`;
-                        };
-
-                        await _loop();
-                        _interval = setInterval(_loop, 3000);
-                    }
-                });
-            });
-        </script>
         <h1>Alphanumeric String Encryption and Decryption</h1>
         <label for="originalString">Original String:</label>
         <input type="text" id="originalString" />
