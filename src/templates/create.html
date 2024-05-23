@@ -85,8 +85,10 @@
                 border: 1px solid #c4c4c4;
                 cursor: pointer;
                 font-size: 1rem;
-                padding: 0.5rem;
-                width: 100%;
+                display: block;
+                padding: 0.5rem 2rem;
+                width: unset;
+                margin: 2rem auto 0;
             }
 
             input[type="submit"]:hover {
@@ -121,6 +123,9 @@
 
             .success > #success {
                 display: block;
+            }
+            .error {
+                color: red;
             }
         </style>
     </head>
@@ -193,31 +198,19 @@
                     e.preventDefault();
                     document.body.classList = "creating";
                     const all = "abcdefghijklmnopqrstuvwxyz0123456789";
-                    const shifter = (letter, pass, direction) => {
-                        var add =
-                            (all.indexOf(letter) +
-                                pass.charCodeAt(0) * direction) %
-                            all.length;
-                        while (add < 0) add += all.length;
-                        return all[add];
-                    };
                     let secret = document.getElementById("secret").value;
                     const password = document.getElementById("password").value;
                     if (secret) {
-                        const passwordLength = password.length;
-                        const encryptTimes = Math.ceil(
-                            passwordLength / secret.length
-                        );
-                        for (var j = 0; j < encryptTimes; j++) {
-                            var encryptedString = "";
-                            for (var i = 0; i < secret.length; i++)
-                                encryptedString += shifter(
-                                    secret[i],
-                                    password[i % passwordLength],
-                                    1
-                                );
-                            secret = encryptedString;
+                        secret = secret.toLowerCase().split("");
+                        for (var j = 0; j < password.length; j++) {
+                            secret[j % secret.length] =
+                                all[
+                                    (all.indexOf(secret[j % secret.length]) +
+                                        password[j].charCodeAt(0)) %
+                                        all.length
+                                ];
                         }
+                        secret = secret.join("");
                     }
                     const name = document.getElementById("name").value;
                     try {

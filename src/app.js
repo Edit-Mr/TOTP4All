@@ -1,50 +1,50 @@
+"use strict";
 /** @format */
-
-import express, { Request, Response, NextFunction } from "express";
-import { JsonDB, Config } from "node-json-db";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const node_json_db_1 = require("node-json-db");
 var speakeasy = require("speakeasy");
-import path from "path";
-
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const path_1 = __importDefault(require("path"));
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "templates"));
-app.use("/static", express.static(path.join(__dirname, "/static")));
-console.log(path.join(__dirname, "/static"));
-
-interface TOTPEntry {
-    secret: string;
-}
-
-const db = new JsonDB(
-    new Config(path.join(__dirname, "/token.json"), true, true, "/")
-);
-
-let fakeCode: Record<string, string> = {};
+app.set("views", path_1.default.join(__dirname, "templates"));
+app.use("/static", express_1.default.static(path_1.default.join(__dirname, "/static")));
+const db = new node_json_db_1.JsonDB(new node_json_db_1.Config(path_1.default.join(__dirname, "/token.json"), true, true, "/"));
+let fakeCode = {};
 let cleanCodeStart = false;
-
 // 主页
-app.get("/", (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, "/templates/home.html"));
+app.get("/", (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, "/templates/home.html"));
 });
-
-app.post("/create", async (req: Request, res: Response) => {
+app.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { secret, name } = req.body;
     let keyName = name || Math.random().toString(36).substring(2, 12);
-
     if (!secret) {
         return res
             .status(400)
             .json({ status: "error", message: "Secret is required." });
     }
-
     try {
-        const data = await db.getData(`/totp/${keyName}`);
+        const data = yield db.getData(`/totp/${keyName}`);
         return res
             .status(400)
             .json({ status: "error", keyName, message: "Key already exists." });
-    } catch (error) {
+    }
+    catch (error) {
         db.push(`/totp/${keyName}`, { secret });
         res.json({
             status: "success",
@@ -52,31 +52,29 @@ app.post("/create", async (req: Request, res: Response) => {
             message: "Secret saved successfully.",
         });
     }
-});
-
-app.get("/totp/:keyname", async (req: Request, res: Response) => {
+}));
+app.get("/totp/:keyname", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const keyName = req.params.keyname;
     try {
-        const data = await db.getData(`/totp/${keyName}`);
-        console.log(data);
+        const data = yield db.getData(`/totp/${keyName}`);
         const token = speakeasy.totp({
             secret: data.secret,
             encoding: "base32",
         });
         res.render("totp", { token, keyName });
         db.push(`/totp/${keyName}/lastAccess`, new Date().toISOString());
-    } catch (error) {
+    }
+    catch (error) {
         console.log("lol");
         let token = fakeCode[keyName] || generateFakeCode(keyName);
         res.render("totp", { token, keyName });
         db.push(`/totp/${keyName}/lastAccess`, new Date().toISOString());
     }
-});
-
-app.post("/totp/:keyname", async (req: Request, res: Response) => {
+}));
+app.post("/totp/:keyname", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const keyName = req.params.keyname;
     try {
-        const data = await db.getData(`/totp/${keyName}`);
+        const data = yield db.getData(`/totp/${keyName}`);
         let { secret } = data;
         let { password } = req.body;
         if (password) {
@@ -84,8 +82,7 @@ app.post("/totp/:keyname", async (req: Request, res: Response) => {
             if (secret) {
                 secret = secret.split("");
                 for (var j = password.length - 1; j >= 0; j--) {
-                    let index =
-                        all.indexOf(secret[j % secret.length]) -
+                    let index = all.indexOf(secret[j % secret.length]) -
                         password[j].charCodeAt(0);
                     while (index < 0) {
                         index += all.length;
@@ -93,7 +90,6 @@ app.post("/totp/:keyname", async (req: Request, res: Response) => {
                     secret[j % secret.length] = all[index];
                 }
                 secret = secret.join("");
-                console.log(secret);
             }
         }
         const token = speakeasy.totp({
@@ -102,26 +98,25 @@ app.post("/totp/:keyname", async (req: Request, res: Response) => {
         });
         res.render("totp", { token, keyName });
         db.push(`/totp/${keyName}/lastAccess`, new Date().toISOString());
-    } catch (error) {
+    }
+    catch (error) {
         let token = fakeCode[keyName] || generateFakeCode(keyName);
         res.render("totp", { token, keyName });
         db.push(`/totp/${keyName}/lastAccess`, new Date().toISOString());
     }
+}));
+app.get("/create", (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, "/templates/create.html"));
 });
-
-app.get("/create", (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, "/templates/create.html"));
-});
-
-function generateFakeCode(keyName: string): string {
-    if (!cleanCodeStart) clearFakeCode();
+function generateFakeCode(keyName) {
+    if (!cleanCodeStart)
+        clearFakeCode();
     const token = Math.floor(Math.random() * 1000000)
         .toString()
         .padStart(6, "0");
     fakeCode[keyName] = token;
     return token;
 }
-
 const clearFakeCode = () => {
     const countdown = 31 - (new Date().getSeconds() % 30);
     setTimeout(() => {
@@ -129,12 +124,10 @@ const clearFakeCode = () => {
         cleanCodeStart = false;
     }, countdown * 1000);
 };
-
 //404
-app.use((req: Request, res: Response, next: NextFunction) => {
-    res.status(404).sendFile(path.join(__dirname, "/templates/404.html"));
+app.use((req, res, next) => {
+    res.status(404).sendFile(path_1.default.join(__dirname, "/templates/404.html"));
 });
-
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
