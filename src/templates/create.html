@@ -198,10 +198,10 @@
                     e.preventDefault();
                     document.body.classList = "creating";
                     const all = "abcdefghijklmnopqrstuvwxyz0123456789";
-                    let secret = document.getElementById("secret").value;
+                    let secret = document.getElementById("secret").value.replaceAll(" ", "").toLowerCase();
                     const password = document.getElementById("password").value;
                     if (secret) {
-                        secret = secret.toLowerCase().split("");
+                        secret = secret.split("");
                         for (var j = 0; j < password.length; j++) {
                             secret[j % secret.length] =
                                 all[
