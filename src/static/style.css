@@ -619,3 +619,27 @@ footer a {
         scale: 1;
     }
 }
+
+/* max width 800px */
+@media (max-width: 800px) {
+    .nav-vertical {
+        height: 80px;
+        width: 100vw;
+        top: unset;
+        bottom: 0;
+        border-right: unset;
+        justify-content: space-around;
+        border-top: var(--white) 1px solid;
+        flex-direction: row;
+        padding: 0 30px;
+    }
+    .space{
+        display: none;
+    }
+    .nav-vertical:hover {
+        width: unset;
+    }
+    .nav-vertical:hover .icon-caption {
+        width: unset;
+    }
+}
