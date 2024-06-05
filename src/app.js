@@ -128,7 +128,7 @@ const clearFakeCode = () => {
 app.use((req, res, next) => {
     res.status(404).sendFile(path_1.default.join(__dirname, "/templates/404.html"));
 });
-const PORT = 3000;
+const PORT = 3300;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
