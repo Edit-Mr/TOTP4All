@@ -128,6 +128,20 @@
                 color: red;
             }
         </style>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script
+            async=""
+            src="https://www.googletagmanager.com/gtag/js?id=G-H69XEEC798"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-H69XEEC798");
+        </script>
     </head>
     <body>
         <main>
@@ -198,7 +212,10 @@
                     e.preventDefault();
                     document.body.classList = "creating";
                     const all = "abcdefghijklmnopqrstuvwxyz0123456789";
-                    let secret = document.getElementById("secret").value.replaceAll(" ", "").toLowerCase();
+                    let secret = document
+                        .getElementById("secret")
+                        .value.replaceAll(" ", "")
+                        .toLowerCase();
                     const password = document.getElementById("password").value;
                     if (secret) {
                         secret = secret.split("");
