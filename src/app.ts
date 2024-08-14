@@ -135,7 +135,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     res.status(404).sendFile(path.join(__dirname, "/templates/404.html"));
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+app.listen(process.env.PORT || 3030, () => {
+    console.log("Server listening on port");
+  });
+  
