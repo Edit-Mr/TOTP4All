@@ -4,7 +4,8 @@
     "description": "TOTP for All",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon src/app.ts",
+        "dev": "nodemon src/app.ts",
+        "start": "node dist/app.js",
         "build": "tsc --project ./",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
