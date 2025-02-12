@@ -4,10 +4,9 @@
     "description": "TOTP for All",
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon src/app.ts",
-        "start": "node src/app.js",
-        "build": "tsc --project ./",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "tsc",
+        "postbuild": "cp -r src/static dist/ && cp -r src/token.json dist/ && cp -r src/templates dist/",
+        "start": "node dist/app.js"
     },
     "repository": {
         "type": "git",
