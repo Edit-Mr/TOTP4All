@@ -18,7 +18,7 @@ interface TOTPEntry {
 }
 
 const db = new JsonDB(
-    new Config(path.join(__dirname, "/token.json"), true, true, "/")
+    new Config(path.join(__dirname, "/data/token.json"), true, true, "/")
 );
 
 let fakeCode: Record<string, string> = {};
