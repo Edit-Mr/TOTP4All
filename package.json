@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "tsc",
-        "postbuild": "cp -r src/static dist/ && cp -r src/token.json dist/ && cp -r src/templates dist/",
+        "postbuild": "cp -r src/static dist/ && cp -r src/templates dist/",
         "start": "node dist/app.js"
     },
     "repository": {
